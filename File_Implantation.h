@@ -12,7 +12,7 @@
  * @tparam T
  */
 template<typename T>
-File<T>::File() {
+File<T>::File() : capacite(0), cardinal(0), tete(0) {
 
 }
 
@@ -23,7 +23,7 @@ File<T>::File() {
  * @except std::runtime_error si l'objet vector est plus grand que la capacité maximale.
  */
 template<typename T>
-File<T>::File(const std::vector<T>& v) {
+File<T>::File(const std::vector<T>& v) : capacite(0), cardinal(0), tete(0) {
 
 }
 
