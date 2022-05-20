@@ -4,7 +4,10 @@
 
 ### Instructions
 
-- Cloner le dépôt git ```git clone https://IFT2008-TD/File.git```
+- Cloner le dépôt git ```git clone https://github.com/IFT2008-TD/File.git``` et créez le projet dans CLion.
+- Si votre version de git est à jour sur la VM (voir contribution de Pascal Johnson dans le forum du cours), vous pouvez tout simplement cliquer "get from vcs"
+dans la fenêtre des nouveaux projets de CLion, et dans le champ URL, vous saisissez l'adresse du 
+dépôt: "https://github.com/IFT2008-TD/File.git" et cliquer sur "clone".  CLion va créer le projet automatiquement.
 - Créer votre propre branche, que vous nommez comme vous voulez ```git branch mabranche```
 - Basculer sur cette branche ```git checkout mabranche```
 - Lire ce README, et la documentation de la classe et des méthodes
