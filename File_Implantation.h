@@ -9,8 +9,10 @@
 
 namespace td4 {
 /**
- * Crée une file d'attente vide.
+ * Crée une file d'attente vide, de capacité maximale capacite.
  * @tparam T
+ * @param capacite Nombre maximal d'élément dans la file.  Par défaut, sera cap_defaut
+ * @except std::invalid_argument si capacite dépasse cap_maximal
  */
     template<typename T>
     File<T>::File(size_t capacite) : capacite(capacite), cardinal(0), tete(0) {
@@ -19,9 +21,10 @@ namespace td4 {
 
 /**
  * Crée une file d'attente à-partir d'un objet vector.  Adapte automatiquement la capacité à celle du vector.  Échoue
- * si la capacité de l'objet vector est supérieure à la capacité maximale.
+ * si la capacité de l'objet vector est supérieure à la capacité maximum.
  * @tparam T
- * @except std::runtime_error si l'objet vector est plus grand que la capacité maximale.
+ * @param v Vecteur qui sera copié dans la file.
+ * @except std::runtime_error si l'objet vector est plus grand que la capacité maximum.
  */
     template<typename T>
     File<T>::File(const std::vector<T> &v) : capacite(0), cardinal(0), tete(0) {
@@ -31,10 +34,11 @@ namespace td4 {
 /**
  * Ajoute un élément en QUEUE de file.
  * @tparam T
+ * @param e Élément à insérer dans la file.
  * @except std::runtime_error si la file est pleine.
  */
     template<typename T>
-    void File<T>::enfiler(const T &) {
+    void File<T>::enfiler(const T &e) {
 
     }
 
