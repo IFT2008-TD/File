@@ -8,40 +8,49 @@
 #include <vector>
 #include <cstddef>
 
-template <typename T>
-class File {
-public:
+namespace td4 {
 
-    static const size_t cap_maximum = 1000 ;
-    static const size_t cap_defaut  = 7 ;
+    template<typename T>
+    class File {
+    public:
 
-    explicit File () ;
-    explicit File (const std::vector<T>&) ;
+        static const size_t cap_maximum = 1000;
+        static const size_t cap_defaut = 7;
 
-    void enfiler (const T&) ;
-    void defiler () ;
-    const T& premier () const ;
+        explicit File(size_t = cap_defaut);
 
-    void vider () ;
-    void agrandir (size_t) ;
+        explicit File(const std::vector<T> &);
 
-    bool estVide () const ;
-    bool estPleine () const ;
-    size_t disponible () const ;
+        void enfiler(const T &);
 
-private:
-    size_t          capacite ;
-    size_t          cardinal ;
-    size_t          tete ;
-    std::vector<T>  vecteur ;
+        void defiler();
 
-private:
+        const T &premier() const;
 
-    size_t queue () const ;
+        void vider();
+
+        void agrandir(size_t);
+
+        bool estVide() const;
+
+        bool estPleine() const;
+
+        size_t disponible() const;
+
+    private:
+        size_t capacite;
+        size_t cardinal;
+        size_t tete;
+        std::vector<T> vecteur;
+
+    private:
+
+        size_t queue() const;
 
 
-};
+    };
 
+}
 
 
 #include "File_Implantation.h"

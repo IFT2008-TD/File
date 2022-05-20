@@ -7,14 +7,15 @@
 
 #include "File.h"
 
+namespace td4 {
 /**
  * Crée une file d'attente vide.
  * @tparam T
  */
-template<typename T>
-File<T>::File() : capacite(0), cardinal(0), tete(0) {
+    template<typename T>
+    File<T>::File(size_t capacite) : capacite(capacite), cardinal(0), tete(0) {
 
-}
+    }
 
 /**
  * Crée une file d'attente à-partir d'un objet vector.  Adapte automatiquement la capacité à celle du vector.  Échoue
@@ -22,30 +23,30 @@ File<T>::File() : capacite(0), cardinal(0), tete(0) {
  * @tparam T
  * @except std::runtime_error si l'objet vector est plus grand que la capacité maximale.
  */
-template<typename T>
-File<T>::File(const std::vector<T>& v) : capacite(0), cardinal(0), tete(0) {
+    template<typename T>
+    File<T>::File(const std::vector<T> &v) : capacite(0), cardinal(0), tete(0) {
 
-}
+    }
 
 /**
  * Ajoute un élément en QUEUE de file.
  * @tparam T
  * @except std::runtime_error si la file est pleine.
  */
-template<typename T>
-void File<T>::enfiler(const T &) {
+    template<typename T>
+    void File<T>::enfiler(const T &) {
 
-}
+    }
 
 /**
  * Retire l'élément en TÊTE de file.  Ne retourne RIEN.
  * @tparam T
  * @except std::runtime_error si la file est vide.
  */
-template<typename T>
-void File<T>::defiler() {
+    template<typename T>
+    void File<T>::defiler() {
 
-}
+    }
 
 /**
  * Retourne l'élément en TÊTE de file (le prochain à sortir)
@@ -53,31 +54,31 @@ void File<T>::defiler() {
  * @return Élément en tête
  * @except std::runtime_error si la file est vide.
  */
-template<typename T>
-const T &File<T>::premier() const {
-    T t ;
-    return t ;
-}
+    template<typename T>
+    const T &File<T>::premier() const {
+        T t;
+        return t;
+    }
 
 /**
  * MÉTHODE PRIVÉE: Localise le dernier élément de la file.
  * @tparam T
  * @return Index de la position du dernier élément ajouté, plus 1.
  */
-template<typename T>
-size_t File<T>::queue() const {
-    return 0;
-}
+    template<typename T>
+    size_t File<T>::queue() const {
+        return 0;
+    }
 
 /**
  * Efface toutes les données de la file.  Celle-ci est vide après l'opération.  Ne change PAS la capacité de la file.
  * N'a aucun effet si la file est déjà vide.
  * @tparam T
  */
-template<typename T>
-void File<T>::vider() {
+    template<typename T>
+    void File<T>::vider() {
 
-}
+    }
 
 /**
  * Modifie la capacité de la file.  Si celle-ci avait une capacité de n, agrandir(x) donnera une file de capacité
@@ -85,39 +86,41 @@ void File<T>::vider() {
  * est non défini.  Il est donc préférable, pour réduire une file, de l'effacer au préalable.
  * @tparam T
  */
-template<typename T>
-void File<T>::agrandir(size_t) {
+    template<typename T>
+    void File<T>::agrandir(size_t) {
 
-}
+    }
 
 /**
  * Vérifie si la file est vide.
  * @tparam T
  * @return true si la file est vide.
  */
-template<typename T>
-bool File<T>::estVide() const {
-    return false;
-}
+    template<typename T>
+    bool File<T>::estVide() const {
+        return false;
+    }
 
 /**
  * Vérifie si la file est remplie.
  * @tparam T
  * @return true si la file est remplie.
  */
-template<typename T>
-bool File<T>::estPleine() const {
-    return false;
-}
+    template<typename T>
+    bool File<T>::estPleine() const {
+        return false;
+    }
 
 /**
  * Vérifie la réserve de la file.  Si disponible retourne n, alors on peut encore enfile n éléments dans la file.
  * @tparam T
  * @return Le nombre d'éléments que l'on peut enfiler.
  */
-template<typename T>
-size_t File<T>::disponible() const {
-    return 0;
+    template<typename T>
+    size_t File<T>::disponible() const {
+        return 0;
+    }
+
 }
 
 #endif //FILE_EXEC_FILE_IMPLANTATION_H
