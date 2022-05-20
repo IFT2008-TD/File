@@ -20,14 +20,14 @@ namespace td4 {
     }
 
 /**
- * Crée une file d'attente à-partir d'un objet vector.  Adapte automatiquement la capacité à celle du vector.  Échoue
- * si la capacité de l'objet vector est supérieure à la capacité maximum.
+ * Crée une file d'attente à-partir d'une liste d'initialisation.  Adapte automatiquement la capacité à celle de la liste.  Échoue
+ * si la capacité de la liste est supérieure à la capacité maximum.
  * @tparam T
- * @param v Vecteur qui sera copié dans la file.
- * @except std::runtime_error si l'objet vector est plus grand que la capacité maximum.
+ * @param l Liste d'initialisation.
+ * @except std::runtime_error si la liste d'initialisation est plus grande que la capacité maximum.
  */
     template<typename T>
-    File<T>::File(const std::vector<T> &v) : capacite(0), cardinal(0), tete(0) {
+    File<T>::File(std::initializer_list<T> l) : capacite(0), cardinal(0), tete(0), vecteur(l) {
 
     }
 

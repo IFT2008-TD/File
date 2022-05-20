@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <cstddef>
+#include <initializer_list>
 
 namespace td4 {
 
@@ -19,7 +20,7 @@ namespace td4 {
 
         explicit File(size_t = cap_defaut);
 
-        explicit File(const std::vector<T> &);
+        explicit File(std::initializer_list<T>);
 
         void enfiler(const T &);
 
