@@ -16,7 +16,7 @@ public:
     static const size_t cap_defaut  = 7 ;
 
     explicit File () ;
-    explicit File (std::vector<T>) ;
+    explicit File (const std::vector<T>&) ;
 
     void enfiler (const T&) ;
     void defiler () ;
