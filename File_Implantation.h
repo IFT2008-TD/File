@@ -15,20 +15,21 @@ namespace td4 {
  * @except std::invalid_argument si capacite dépasse cap_maximal
  */
     template<typename T>
-    File<T>::File(size_t capacite) : capacite(capacite), cardinal(0), tete(0) {
-
+    File<T>::File(size_t capacite) : capacite(capacite), cardinal(0), tete(0), vecteur(capacite) {
+        if (capacite > cap_maximum) throw std::invalid_argument("constructeur par défaut: Capacité excessive.") ;
     }
 
 /**
  * Crée une file d'attente à-partir d'une liste d'initialisation.  Adapte automatiquement la capacité à celle de la liste.  Échoue
  * si la capacité de la liste est supérieure à la capacité maximum.
+ * NB: La capacité sera le double de la longueur de la liste d'initialisation.
  * @tparam T
  * @param l Liste d'initialisation.
  * @except std::runtime_error si la liste d'initialisation est plus grande que la capacité maximum.
  */
     template<typename T>
-    File<T>::File(std::initializer_list<T> l) : capacite(0), cardinal(0), tete(0), vecteur(l) {
-
+    File<T>::File(std::initializer_list<T> l) : capacite(2 * l.size()), cardinal(l.size()), tete(0), vecteur(capacite) {
+       if (capacite > cap_maximum) throw std::invalid_argument("constructeur liste: Capacité excessive.") ;
     }
 
 /**
@@ -39,6 +40,9 @@ namespace td4 {
  */
     template<typename T>
     void File<T>::enfiler(const T &e) {
+        if (estPleine()) throw std::runtime_error("enfile: file pleine") ;
+        vecteur.at(queue()) = e ;
+        ++cardinal ;
 
     }
 
@@ -49,6 +53,9 @@ namespace td4 {
  */
     template<typename T>
     void File<T>::defiler() {
+        if (estVide()) throw std::runtime_error("defiler: file vide") ;
+        tete = (tete + 1) % capacite ;
+        --cardinal ;
 
     }
 
@@ -60,8 +67,8 @@ namespace td4 {
  */
     template<typename T>
     const T &File<T>::premier() const {
-        T t;
-        return t;
+        if (estVide()) throw std::runtime_error("premier: file vide") ;
+        return vecteur.at(premier());
     }
 
 /**
@@ -71,7 +78,7 @@ namespace td4 {
  */
     template<typename T>
     size_t File<T>::queue() const {
-        return 0;
+        return (tete + cardinal) % capacite ;
     }
 
 /**
@@ -81,7 +88,8 @@ namespace td4 {
  */
     template<typename T>
     void File<T>::vider() {
-
+        tete = 0 ;
+        cardinal = 0 ;
     }
 
 /**
@@ -91,7 +99,9 @@ namespace td4 {
  * @tparam T
  */
     template<typename T>
-    void File<T>::agrandir(size_t) {
+    void File<T>::agrandir(size_t x) {
+        vecteur.resize(x) ;
+        capacite = x ;
 
     }
 
@@ -102,7 +112,7 @@ namespace td4 {
  */
     template<typename T>
     bool File<T>::estVide() const {
-        return false;
+        return (cardinal == 0);
     }
 
 /**
@@ -112,7 +122,7 @@ namespace td4 {
  */
     template<typename T>
     bool File<T>::estPleine() const {
-        return false;
+        return (disponible() == 0);
     }
 
 /**
@@ -122,7 +132,7 @@ namespace td4 {
  */
     template<typename T>
     size_t File<T>::disponible() const {
-        return 0;
+        return (capacite - cardinal);
     }
 
 }
