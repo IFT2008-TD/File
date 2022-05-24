@@ -21,7 +21,7 @@ namespace td4 {
 
         explicit File(size_t = cap_defaut);
 
-        explicit File(std::initializer_list<T>);
+        File(std::initializer_list<T>);
 
         void enfiler(const T &);
 
