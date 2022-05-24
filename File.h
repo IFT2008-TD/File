@@ -8,6 +8,7 @@
 #include <vector>
 #include <cstddef>
 #include <initializer_list>
+#include <stdexcept>
 
 namespace td4 {
 
