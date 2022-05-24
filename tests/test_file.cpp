@@ -22,6 +22,7 @@ protected:
 
     td4::File<int> file_vide ;
     td4::File<int> file_5 {100, 200, 300, 400, 500} ;
+    td4::File<int> file_2 {1, 2};
 };
 
 TEST_F(FileTest, estVide_true_file_vide) {
@@ -88,6 +89,28 @@ TEST_F(FileTest, enfiler_defiler_bonne_sequence) {
     EXPECT_EQ(2, file_5.premier()) ;
     file_5.defiler() ;
     EXPECT_TRUE(file_5.estVide()) ;
+}
+
+TEST_F(FileTest, enfiler_defiler_wraparound) {
+    file_2.enfiler(3) ;
+    EXPECT_EQ(1, file_2.premier()) ;
+    file_2.defiler() ;
+
+    file_2.enfiler(4) ;
+    EXPECT_EQ(2, file_2.premier()) ;
+    file_2.defiler() ;
+
+    file_2.enfiler(5) ;
+    EXPECT_EQ(3, file_2.premier()) ;
+    file_2.defiler() ;
+
+    file_2.enfiler(6) ;
+    EXPECT_EQ(4, file_2.premier()) ;
+    file_2.defiler() ;
+
+    file_2.enfiler(7) ;
+    EXPECT_EQ(5, file_2.premier()) ;
+    EXPECT_EQ(1, file_2.disponible()) ;
 }
 
 TEST_F(FileTest, vider_file_est_vide) {
