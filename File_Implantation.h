@@ -28,8 +28,9 @@ namespace td4 {
  * @except std::runtime_error si la liste d'initialisation est plus grande que la capacité maximum.
  */
     template<typename T>
-    File<T>::File(std::initializer_list<T> l) : capacite(2 * l.size()), cardinal(l.size()), tete(0), vecteur(capacite) {
+    File<T>::File(std::initializer_list<T> l) : capacite(2 * l.size()), cardinal(l.size()), tete(0), vecteur(l) {
        if (capacite > cap_maximum) throw std::invalid_argument("constructeur liste: Capacité excessive.") ;
+       vecteur.resize(capacite) ;
     }
 
 /**
@@ -68,7 +69,7 @@ namespace td4 {
     template<typename T>
     const T &File<T>::premier() const {
         if (estVide()) throw std::runtime_error("premier: file vide") ;
-        return vecteur.at(premier());
+        return vecteur.at(tete);
     }
 
 /**
